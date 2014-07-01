@@ -2,7 +2,7 @@ Train-tracker Documentation
 ===========================
 
 Abstract
-========
+--------
 This is a simple mobile application to track a train. The train send his location details using GPS coordinates to the server. Then the server get those details and process data and call Google location web service and get the extract location of the train. Then send all those data to database. Server calculate the train speed by considering current location and privies location. Save all data in mysql database. When a customer ask for spacial train the server send related data to the customer using Spring MVC web service.
 
 This implementation only supply Java code as clients and anyone can change it to use in mobile application (Android) easily.
@@ -40,31 +40,28 @@ Deploy Project
 ==============
 Before that you have to set up mysql database (TrainTracker)
 Run in mysql 	
-                CREATE DATABASE TrainTracker; .
-		SELECT  TrainTracker;
-		CREATE TABLE  abc  (Num INT(2) , Lon VARCHAR(80) , Lat VATCHAR(80) , Location VARCHAR(40) , Speed  VARCHAR(5));
+CREATE DATABASE TrainTracker; 
+SELECT  TrainTracker;
+CREATE TABLE  abc  (Num INT(2) , Lon VARCHAR(80) , Lat VATCHAR(80) , Location VARCHAR(40) , Speed  VARCHAR(5));
 
 Then
 Go to MainServer project go in to build the lib folder and copy MainServer.war file 
 Then go to Tomcat7 folder where you have installed it. Past the war file in webapp folder.
 Then go come back to Tomcat folder and go to bin folder.
 
-Then type       
-                $ ./catalina.sh run
+Then type           $ ./catalina.sh run
 
 Now your MainServerProject is deploying in localhost.
 
 Open a new terminal and
 Then go to ClientTrainDevice project → build → lib in terminal and 
 
-type 
-                $ java -jar ClientTrainDevice.jar
+type $ java -jar ClientTrainDevice.jar
 
 Then TrainClientDevice will be run.
 
 Then go to Client project → build →lib folder in terminal.
 
-Type 
-                $ java -jar Client 
+Type $ java -jar Client 
 
 Now you can see the location and speed of the train in current time. You can run it again and again and check the location of virtual train.
