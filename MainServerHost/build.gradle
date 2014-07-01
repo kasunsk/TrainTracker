@@ -1,0 +1,58 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'war'
+//apply plugin: 'spring-boot'
+//apply plugin: 'idea'
+
+war {
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	manifest { attributes 'Main-Class': 'com.kasun.common.run.Run' }
+}
+
+buildscript {
+	repositories {
+		maven { url "http://repo.spring.io/libs-release" }
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath	'org.apache.maven.plugins:maven-compiler-plugin:2.3.2',
+					'org.apache.maven.plugins:maven-eclipse-plugin:2.9'
+//					'org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE'
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "http://repo.spring.io/libs-release" }
+}
+
+//configurations {
+//	providedRuntime
+//}
+
+
+dependencies {
+	compile			'org.springframework:spring-core:' + springVersion, 
+					'org.springframework:spring-web:' + springVersion,
+					'org.springframework:spring-webmvc:'  + springVersion,
+					'mysql:mysql-connector-java:5.1.28',
+					'com.googlecode.json-simple:json-simple:1.1.1',
+					'com.google.code.gson:gson:2.2.4',		
+					'org.slf4j:slf4j-api:1.7.5',
+					'org.slf4j:slf4j-log4j12:1.7.5',
+					'log4j:log4j:1.2.17',
+//                  'org.springframework.boot:spring-boot-starter-web',
+//					'org.thymeleaf:thymeleaf-spring4',
+//					'org.springframework.boot:spring-boot-starter-tomcat',
+//					'org.springframework.boot:spring-boot-starter-thymeleaf',
+//					'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect',
+					'org.codehaus.jackson:jackson-mapper-asl:' + jacksonVersion
+				
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.11'
+}
